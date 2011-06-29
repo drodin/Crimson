@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.drodin.crimson" android:versionCode="1"
-	android:versionName="0.9 beta">
+	package="com.drodin.crimson" android:versionCode="2"
+	android:versionName="0.9.1">
 	<supports-screens android:anyDensity="true"
 		android:smallScreens="true" android:normalScreens="true"
 		android:largeScreens="true" />
 	<application android:label="Crimson Fields" android:icon="@drawable/icon"
-		android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+		android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+		android:debuggable="false">
 		<activity android:name=".MainActivity" android:label="Crimson Fields"
 			android:screenOrientation="portrait" android:configChanges="orientation"
 			android:multiprocess="false" android:launchMode="singleTask">
@@ -15,9 +16,11 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<meta-data android:value="a14c59199c5a81c" android:name="ADMOB_PUBLISHER_ID" />
+		<activity android:name="com.google.ads.AdActivity"
+			android:configChanges="keyboard|keyboardHidden|orientation" />
 	</application>
 	<uses-sdk android:minSdkVersion="3" android:targetSdkVersion="8" />
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 </manifest>

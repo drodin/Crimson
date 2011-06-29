@@ -80,8 +80,8 @@ JAVA_EXPORT_NAME(DemoGLSurfaceView_nativeMouse) ( JNIEnv*  env, jobject  thiz, j
 		y = y * renderer->window->h / renderer->window->display->desktop_mode.h;
 	}
 #else
-	x = x * SDL_ANDROID_sFakeWindowWidth / SDL_ANDROID_sWindowWidth;
-	y = y * SDL_ANDROID_sFakeWindowHeight / SDL_ANDROID_sWindowHeight;
+	x = x * SDL_ANDROID_sFakeWindowWidth / SDL_ANDROID_sWindowWidth / SDL_ANDROID_sScale;
+	y = y * SDL_ANDROID_sFakeWindowHeight / SDL_ANDROID_sWindowHeight / SDL_ANDROID_sScale;
 #endif
 
 #endif

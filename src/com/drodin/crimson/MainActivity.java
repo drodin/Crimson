@@ -16,13 +16,12 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.admob.android.ads.AdListener;
-import com.admob.android.ads.AdView;
+import com.google.ads.*;
 
 
-public class MainActivity extends Activity implements AdListener {
+public class MainActivity extends Activity {
 
-	private int adHeightPx = 48;
+	private int adHeightPx = 50;
 	private LinearLayout mMainLayout = null;
 	private DemoGLSurfaceView mGLView = null;
 	private static AdView mAdView = null;
@@ -35,7 +34,7 @@ public class MainActivity extends Activity implements AdListener {
 		getWindow().setFlags(
 				WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, 
 				WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS); 
-
+		
 		getWindow().setFlags(
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -55,10 +54,12 @@ public class MainActivity extends Activity implements AdListener {
 			mGLView.setFocusableInTouchMode(true);
 			mGLView.setFocusable(true);
 
-			//AdManager.setTestDevices(new String[] {AdManager.TEST_EMULATOR});
+			mAdView = new AdView(this, AdSize.BANNER, "a14c59199c5a81c");
+			
+			AdRequest adRequest = new AdRequest();
+			adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
 
-			mAdView = new AdView(this);
-			mAdView.setAdListener(this);
+			mAdView.loadAd(adRequest);
 			mAdView.setGravity(Gravity.BOTTOM);
 
 			Display mDispaly = getWindowManager().getDefaultDisplay();
@@ -83,7 +84,7 @@ public class MainActivity extends Activity implements AdListener {
 		super.onPause();
 		if( mGLView != null ) {
 			mGLView.onPause();
-			mGLView.nativeResume();
+			DemoGLSurfaceView.nativeResume();
 		}
 	}
 
@@ -92,7 +93,7 @@ public class MainActivity extends Activity implements AdListener {
 		super.onResume();
 		if( mGLView != null ) {
 			mGLView.onResume();
-			mGLView.nativeResume();
+			DemoGLSurfaceView.nativeResume();
 		}
 		initSDL();
 	}
@@ -149,29 +150,5 @@ public class MainActivity extends Activity implements AdListener {
 			//noop
 		}
 	}
-
-	@Override
-	public void onFailedToReceiveAd(AdView arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onFailedToReceiveRefreshedAd(AdView arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onReceiveAd(AdView arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onReceiveRefreshedAd(AdView arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 }

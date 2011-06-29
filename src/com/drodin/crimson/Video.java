@@ -89,7 +89,10 @@ class DemoRenderer extends GLSurfaceView_SDL.Renderer {
 	}
 
 	public void onSurfaceChanged(GL10 gl, int w, int h) {
-		nativeResize(w, h);
+		double scale = 1.0;
+		if (h>=480)
+			scale = 1.5;
+		nativeResize(w, h, scale);
 	}
 
 	public void onDrawFrame(GL10 gl) {
@@ -117,7 +120,7 @@ class DemoRenderer extends GLSurfaceView_SDL.Renderer {
 
 	private native void nativeInitJavaCallbacks();
 	private native void nativeInit();
-	private native void nativeResize(int w, int h);
+	private native void nativeResize(int w, int h, double scale);
 	private native void nativeDone();
 
 	private Activity context = null;

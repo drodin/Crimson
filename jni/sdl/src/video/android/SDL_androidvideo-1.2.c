@@ -367,7 +367,7 @@ static void ANDROID_UpdateRects(_THIS, int numrects, SDL_Rect *rects)
 
 		    glTexSubImage2D(GL_TEXTURE_2D, 0, rects[i].x, rects[i].y, rects[i].w, rects[i].h, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, part_screen);
 #if SDL_VIDEO_RENDER_RESIZE
-		    glDrawTexiOES(0, 0, 1, SDL_ANDROID_sWindowWidth, SDL_ANDROID_sWindowHeight);  // Stretch to screen
+		    glDrawTexiOES(0, 0, 1, SDL_ANDROID_sWindowWidth*SDL_ANDROID_sScale, SDL_ANDROID_sWindowHeight*SDL_ANDROID_sScale);  // Stretch to screen
 #else
 		    glDrawTexiOES(0, SDL_ANDROID_sWindowHeight - SDL_ANDROID_sFakeWindowHeight, 1, SDL_ANDROID_sFakeWindowWidth, SDL_ANDROID_sFakeWindowHeight);  // Do not stretch
 #endif
@@ -384,7 +384,7 @@ static int ANDROID_FlipHWSurface(_THIS, SDL_Surface *surface)
 	{
 		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, memX, memY, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, memBuffer);
 #if SDL_VIDEO_RENDER_RESIZE
-		glDrawTexiOES(0, 0, 1, SDL_ANDROID_sWindowWidth, SDL_ANDROID_sWindowHeight);  // Stretch to screen
+		glDrawTexiOES(0, 0, 1, SDL_ANDROID_sWindowWidth*SDL_ANDROID_sScale, SDL_ANDROID_sWindowHeight*SDL_ANDROID_sScale);  // Stretch to screen
 #else
 		glDrawTexiOES(0, SDL_ANDROID_sWindowHeight - SDL_ANDROID_sFakeWindowHeight, 1, SDL_ANDROID_sFakeWindowWidth, SDL_ANDROID_sFakeWindowHeight);  // Do not stretch
 #endif
@@ -432,9 +432,9 @@ void SdlGlRenderInit()
     glBindTexture(GL_TEXTURE_2D, 0);
     glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-#if SDL_VIDEO_RENDER_RESIZE    
-        glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+#if SDL_VIDEO_RENDER_RESIZE
+        glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 #else
         glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);

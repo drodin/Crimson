@@ -39,6 +39,7 @@ SDL_SRCS := \
 	src/haptic/dummy/*.c \
 	src/loadso/dlopen/*.c \
 	src/main/android/*.c \
+	src/main/android/*.cpp \
 
 # TODO: use libcutils for atomic operations, but it's not included in NDK
 
@@ -55,6 +56,6 @@ LOCAL_SRC_FILES := $(foreach F, $(SDL_SRCS), $(addprefix $(dir $(F)),$(notdir $(
 
 LOCAL_STATIC_LIBRARIES := application sdl_ttf freetype
 
-LOCAL_LDLIBS := -lGLESv1_CM -lz -ldl -llog
+LOCAL_LDLIBS := -lGLESv1_CM -lz -llog
 
 include $(BUILD_SHARED_LIBRARY)

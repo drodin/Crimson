@@ -30,6 +30,7 @@ extern void ANDROID_InitOSKeymap();
 
 extern int SDL_ANDROID_sWindowWidth;
 extern int SDL_ANDROID_sWindowHeight;
+extern double SDL_ANDROID_sScale;
 extern int SDL_ANDROID_sFakeWindowWidth; // SDL 1.2 only
 extern int SDL_ANDROID_sFakeWindowHeight; // SDL 1.2 only
 extern int SDL_ANDROID_CallJavaSwapBuffers();

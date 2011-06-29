@@ -389,11 +389,11 @@ static void load_settings( GUIOptions &opts ) {
           val = &linebuf[pos+1];
           while ( *val == ' ' ) ++val;
 
-          if ( !strncmp( linebuf, "width", 5 ) ) opts.px_width = atoi(val);
+          /*if ( !strncmp( linebuf, "width", 5 ) ) opts.px_width = atoi(val);
           else if ( !strncmp( linebuf, "height", 6 ) ) opts.px_height = atoi(val);
           else if ( !strncmp( linebuf, "fullscreen", 10 ) ) {
             if ( atoi(val) != 0 ) opts.sdl_flags |= SDL_FULLSCREEN;
-          } else if ( !strncmp( linebuf, "sfxvol", 6 ) ) opts.sfx_vol = atoi(val);
+          } else*/ if ( !strncmp( linebuf, "sfxvol", 6 ) ) opts.sfx_vol = atoi(val);
           else if ( !strncmp( linebuf, "musicvol", 8 ) ) opts.music_vol = atoi(val);
           else if ( !strncmp( linebuf, "sfx", 3 ) ) opts.sfx = (atoi(val) != 0);
           else if ( !strncmp( linebuf, "music", 5 ) ) opts.music = (atoi(val) != 0);
